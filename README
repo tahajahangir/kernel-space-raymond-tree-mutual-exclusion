@@ -1,0 +1,31 @@
+To run a test:
+
+for each site (computer):
+
+STEP 1: make and install kld:
+	$ cd ./module/
+	$ make load
+
+STEP 2: make test script
+	$ cd ./test/
+	$ make
+	a.out will be created
+	This small prog is used for calling syscalls.
+	exits with return value 0, if syscall succeeded
+	or exits with a non-zero value and prints error to stderr
+
+STEP 3: Initialize algorithm
+	// initialize as a token holder
+	$ ./test/a.out init 192.168.1.1 1112
+	or
+	// initialize as a regular site
+	$ ./test/a.out init 192.168.1.2 1110 192.168.1.1 1112
+	
+STEP 4: test it!
+	// to enter critical section
+	$ ./test/a.out enter
+	// to exit critical section
+	$ ./test/a.out exit
+
+STEP 5: destroy site (stop listening for requests)
+	$ ./test/a.out destroy
